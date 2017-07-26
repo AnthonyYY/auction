@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Product, ProductService} from "../shared/product.service";
 
 @Component({
   selector: 'app-product',
@@ -6,33 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-
   public products: Array<Product>;
-
-  constructor() {
-    this.products = [
-      new Product(1001, '健力宝', 12, 1.5, '不错哦', ['饮料']),
-      new Product(1002, '加多宝', 12, 3.5, '好喝', ['饮料']),
-      new Product(1003, '多礼宝', 12, 2.5, '量足', ['饮料']),
-      new Product(1004, '红牛', 12, 2.5, 'Nice', ['饮料']),
-      new Product(1005, '奥利奥', 12, 4.5, '不错哦', ['饮料']),
-      new Product(1006, '养乐多', 12, 3.5, '不错哦', ['饮料'])
-    ]
-  }
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
-
+    this.products = this.productService.getProducts();
   }
 }
-
-export class Product{
-  constructor(
-    public id: number,
-    public title: string,
-    public price: number,
-    public rating: number,
-    public desc: string,
-    public categories: Array<string>,
-  ){}
-}
-
