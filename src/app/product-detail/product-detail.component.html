@@ -14,6 +14,12 @@
 </div>
 
 <div class="well">
+  <button class="btn btn-success" (click)="showCommentAdder = !showCommentAdder">发表评论</button>
+  <div class="form-group" [hidden]="!showCommentAdder">
+    <textarea [(ngModel)]="newComment" class="form-control"></textarea>
+    <app-stars [(rating)]="newRating" [readonly]="false"></app-stars>
+    <button (click)="addComment()" class="btn btn-primary">发表</button>
+  </div>
   <div class="row" *ngFor="let comment of comments">
     <hr>
     <div class="col-sm-12">
